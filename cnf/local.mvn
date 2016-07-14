@@ -1,0 +1,3 @@
+#Make sure to install these to your .m2 repo
+org.eclipse.equinox:org.eclipse.equinox.http.jetty:3.4.0-SNAPSHOT
+org.eclipse.equinox:org.eclipse.equinox.http.servlet:1.4.0-SNAPSHOT

@@ -1,0 +1,43 @@
+#
+# This file is left open for you to define your macros
+#
+
+-buildrepo: Local
+
+-plugin.4.Central: \
+    aQute.bnd.deployer.repository.wrapper.Plugin; \
+        location            =	"${build}/cache/wrapper"; \
+        reindex				=	true, \
+    aQute.bnd.repository.maven.provider.MavenBndRepository; \
+		releaseUrl			=	https://repo.maven.apache.org/maven2/; \
+		name				=	Central
+
+-plugin.6.Local: \
+    aQute.bnd.repository.maven.provider.MavenBndRepository; \
+        name                =	Local
+
+-plugin.7.Jetty9.3.9.v20160517: \
+    aQute.bnd.repository.p2.provider.P2Repository; \
+        name				=	"Jetty9.3.9.v20160517"; \
+        url					=	"http://download.eclipse.org/jetty/updates/jetty-bundles-9.x/9.3.9.v20160517/"
+
+-pom: \
+    groupid =   com.rotty3000, \
+    version =   ${versionmask;===;${@version}}-SNAPSHOT
+
+-augment.eq_hj: \
+	org.eclipse.equinox.http.jetty; \
+		capability:="  generic.dependency;generic.dependency=servlet.container;version:Version='1.0.0'"
+
+-augment.eq_hs: \
+	org.eclipse.equinox.http.servlet; \
+		requirement:=" generic.dependency;filter:='(generic.dependency=servlet.container)';effective:=active"
+
+-augment.fe_gc: \
+	org.apache.felix.gogo.command; \
+		capability:="  generic.dependency;generic.dependency='osgi.shell.command';version:Version='1.0.0'"
+
+-augment.fe_gs: \
+	org.apache.felix.gogo.shell; \
+		capability:="  osgi.implementation;osgi.implementation='osgi.shell';version:Version='1.0.0'"; \
+		requirement:=" generic.dependency;filter:='(generic.dependency=osgi.shell.command)';effective:=active"

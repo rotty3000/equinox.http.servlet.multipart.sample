@@ -1,0 +1,16 @@
+Bundle-Version: 1.0.0
+
+Require-Capability:\
+	osgi.implementation;\
+		filter:="(osgi.implementation=osgi.http)",\
+	osgi.implementation;\
+		filter:="(osgi.implementation=osgi.shell)";\
+		effective:=active
+
+-buildpath: \
+	org.eclipse.jetty.osgi-servlet-api,\
+	org.osgi.service.component.annotations,\
+	org.osgi.service.http.whiteboard
+
+-includeresource.bundle:\
+	{OSGI-INF/permissions.perm=resources/permissions.perm}
